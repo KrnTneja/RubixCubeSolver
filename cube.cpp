@@ -30,7 +30,41 @@ Class:	cube
 		REMAINING ISSUES TO BE SOLVED LATER:
 			Every input that is valid and not solved is not solvable: need to think of additional validate checks!
 */
-
+#include <iostream>
+using namespace std;
 class cube {
+	short state[6][9];		//the state of the cube is represented by a 6*9 array where every index stores the color of the jth cube of ith face
+public:
 	
+	cube()					//constructor, takes input
+	{
+		for (int i = 0; i < 6; ++i)
+		{
+			cout<<"Enter the states for this face"<<endl;
+			for (int j = 0; j < 9; ++j)
+			{
+				cout<<"Enter the state of "<<j<<"th cube of "<<i<<"th face: ";
+				cin>>state[i][j];
+			}
+		}
+	}
+	
+	int getState(int i, int j)		//returns state of a given cube
+	{
+		return state[i][j];
+	}
+};
+
+int main(int argc, char const *argv[])
+{
+	cube c;
+	for(int i=0; i<6; i++)
+	{
+		for (int j = 0; j < 9; ++j)
+		{
+			cout<<c.getState(i,j)<<" ";
+		}
+		cout<<endl;
+	}
+	return 0;
 }
