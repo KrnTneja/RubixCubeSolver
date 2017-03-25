@@ -20,9 +20,30 @@ Solves the cube:
 						break and return the complete solution (HOW TO RETURN COMPLETE SOLUTION? - NEED TO THINK ABOUT.)
 */
 
-cube takeInputCube() {
+#include "cube.h"
+#include <hash_map>
+#include <string>
+#include <queue>
 
-}
-
-int main() {
+cube r(state_copy);
+vector<string> solve() {
+	cube init_state; // Will call the initializer of cube which will take the input
+	hash_map<string, bool> explored;
+	explored[init_state.represent()] = true;
+	queue<cube> q;
+	q.push(init_state);
+	while(q.size() > 0) {
+		cube top = q.front(); q.pop();
+		cube* nextPossibleStates = top.nextPossible();
+		for (int i = 0; i < 18; i++) {
+			if (cube[i].solved()) {
+				return cube[i].steps();
+			} else {
+				if (!explored[cube[i].represent()]) {  // 
+					explored[cube[i].represent] = true;
+					q.push(cube[i]);
+				}
+			}
+		}
+	}
 }
