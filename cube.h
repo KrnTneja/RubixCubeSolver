@@ -108,5 +108,30 @@ public:
 			}
 		}
 	}
+	
+	void print6tabs() { for(int i = 0; i < 6; i++) cout << "\t";}
+	void printWithSpace(int face) {
+		for (int i = 0; i < 3; i++) {
+			print6tabs();
+			for (int j = 0; j < 3; j++) cout << colors[state[face][i][j]] << "\t";
+			cout << "\n";
+		}
+	}
+	void print() {
+		//0:White(Front), 1:Red(Top), 2:Green(Right), 3:Orange(Bottom), 4:Blue(Left), 5:Yellow(Back)
+		// print RED 
+		printWithSpace(1);
+		// print BLUE, WHITE, GREEN (4-0-2)
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) cout << colors[state[4][i][j]] << "\t";
+			for (int j = 0; j < 3; j++) cout << colors[state[0][i][j]] << "\t";
+			for (int j = 0; j < 3; j++) cout << colors[state[2][i][j]] << "\t";
+			cout << "\n";
+		}
+		// print ORANGE
+		printWithSpace(3);		
+		// print YELLOW
+		printWithSpace(5);
+	}
 		
 };
