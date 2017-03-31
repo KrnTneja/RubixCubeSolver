@@ -91,22 +91,15 @@ public:
 		return state[i][j][k];
 	}
 
-
-};
-
-int main(int argc, char const *argv[])
-{
-	cube c;
-	for(int i=0; i<6; i++)
-	{
-		for (int j = 0; j < 3; ++j)
-		{
-			for (int k = 0; k < 3; ++k)
-			{
-				cout<<c.getState(i, j, k);
+	string represent() {
+		strig r = "";
+		for (short i = 0; i < 6; i++) {
+			for (short j = 0; j < 6; j++) {
+				for (short k = 0; k < 6; k++) {
+					t += to_string(state[i][j][k]);
+				}
 			}
 		}
-		cout<<endl;
 	}
-	return 0;
-}
+		
+};
