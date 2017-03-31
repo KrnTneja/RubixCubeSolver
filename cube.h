@@ -71,8 +71,8 @@ public:
 
 	cube(short* arr) {
 		for (short i = 0; i < 6; i++) {
-			for (short j = 0; j < 6; j++) {
-				for (short k = 0; k < 6; k++) {
+			for (short j = 0; j < 3; j++) {
+				for (short k = 0; k < 3; k++) {
 					state[i][j][k] = arr[i][j][k];
 				}
 			}
@@ -82,20 +82,27 @@ public:
 
 	cube nextPossible();
 
-	bool solved();
-
+	bool solved() {
+		for (int i = 0, i < 6; i++) {
+			// check if all match the center element
+			for (int j = 0, j < 3; j++) {
+				for (int k = 0; k < 3; k++) {
+					if (state[i][j][k] != state[i][1][1]) return false;
+				}
+			}
+		}
+		return true
+	}
 	
-	
-	int getState(int i, int j, int k)		//returns state of a given cube
-	{
+	int getState(int i, int j, int k) {
 		return state[i][j][k];
 	}
 
 	string represent() {
 		strig r = "";
 		for (short i = 0; i < 6; i++) {
-			for (short j = 0; j < 6; j++) {
-				for (short k = 0; k < 6; k++) {
+			for (short j = 0; j < 3; j++) {
+				for (short k = 0; k < 3; k++) {
 					t += to_string(state[i][j][k]);
 				}
 			}
