@@ -11,7 +11,7 @@ Class:	cube
 									YELLOW		6
 		Functions:
 			initializer:	Takes up value of state and check if state is valid using validate().
-			validate:		A function that returns boolean values true is input is valid.	
+			validate:		A function that returns boolean values true is input is valid.
 							CHECKS: 	Does input have 9 squares of each colour?
 										Are 6 center pieces uniques?
 										Are 12 edge pieces unique and colored as expected?
@@ -20,7 +20,7 @@ Class:	cube
 											is red center on left?
 											is orange center on right?
 											is blue center on bottom?
-											is yellow center at back?							
+											is yellow center at back?
 			nextPossible:	Returns an array of 9 new cube instances which are possible by 9 rotations of given cube.
 			solved:			Returns boolean value true if the cube is solved.
 			represent:		Returns a string representation for key in hashtable.
@@ -84,13 +84,53 @@ public:
 			}
 		}
 	}
-	bool validate();
+	
+	bool validate()
+	{
+		size_t size[6]={0}
+
+		for (int i = 0; i < 6; ++i)
+		{
+			for (int j = 0; j < 3; ++j)
+			{
+				for (int k = 0; k < 3; ++k)
+				{
+					if (state[i][j][k]==WHITE)
+					{
+						size[WHITE]++;
+					}
+					else if (state[i][j][k]==RED)
+					{
+						size[RED]++;
+					}
+					else if (state[i][j][k]==GREEN)
+					{
+						size[GREEN]++;
+					}
+					else if (state[i][j][k]==ORANGE)
+					{
+						size[ORANGE]++;
+					}
+					else if (state[i][j][k]==BLUE)
+					{
+						size[BLUE]++;
+					}
+					else if (state[i][j][k]==YELLOW)
+					{
+						size[YELLOW]++;
+					}
+				}
+			}
+		}
+
+		
+	}
 
 	cube nextPossible();
 
 	bool solved();
 
-	
+
 	
 	int getState(int i, int j, int k)		//returns state of a given cube
 	{
