@@ -33,18 +33,21 @@ Class:	cube
 
 #include <iostream>
 #include <string>
+
 using namespace std;
+
 #define WHITE 0
 #define RED 1
 #define GREEN 2
 #define ORANGE 3
 #define BLUE 4
 #define YELLOW 5
+
 class cube {
-	short state[6][3][3];		//the state of the cube is represented by a 6*3*3 array
+	short state[6][3][3]; //the state of the cube is represented by a 6*3*3 array
 	//0:White(Front), 1:Red(Top), 2:Green(Right), 3:Orange(Bottom), 4:Blue(Left), 5:Yellow(Back)
 
-	string colors[]={"WHITE", "RED", "GREEN", "ORANGE", "BLUE", "YELLOW"};
+	string colors[6]={"WHITE", "RED", "GREEN", "ORANGE", "BLUE", "YELLOW"};
 public:
 	
 	cube()					//constructor, takes input
@@ -69,7 +72,7 @@ public:
 		}
 	}
 
-	cube(short* arr) {
+	cube(short*** arr) {
 		for (short i = 0; i < 6; i++) {
 			for (short j = 0; j < 3; j++) {
 				for (short k = 0; k < 3; k++) {
@@ -80,18 +83,18 @@ public:
 	}
 	bool validate();
 
-	cube nextPossible();
+	cube* nextPossible();
 
 	bool solved() {
-		for (int i = 0, i < 6; i++) {
+		for (int i = 0; i < 6; i++) {
 			// check if all match the center element
-			for (int j = 0, j < 3; j++) {
+			for (int j = 0; j < 3; j++) {
 				for (int k = 0; k < 3; k++) {
 					if (state[i][j][k] != state[i][1][1]) return false;
 				}
 			}
 		}
-		return true
+		return true;
 	}
 	
 	int getState(int i, int j, int k) {
@@ -99,14 +102,15 @@ public:
 	}
 
 	string represent() {
-		strig r = "";
+		string r = "";
 		for (short i = 0; i < 6; i++) {
 			for (short j = 0; j < 3; j++) {
 				for (short k = 0; k < 3; k++) {
-					t += to_string(state[i][j][k]);
+					r += to_string(state[i][j][k]);
 				}
 			}
 		}
+		return r;
 	}
 	
 	void print6tabs() { for(int i = 0; i < 6; i++) cout << "\t";}
