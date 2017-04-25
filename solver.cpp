@@ -21,14 +21,16 @@ Solves the cube:
 */
 
 #include "cube.h"
-#include <hash_map>
+#include <unordered_map>
 #include <string>
 #include <queue>
 
-cube r(state_copy);
+using namespace std;
+
 vector<string> solve() {
 	cube init_state; // Will call the initializer of cube which will take the input
-	hash_map<string, bool> explored;
+	clea
+unordered_map<string, bool> explored;
 	explored[init_state.represent()] = true;
 	queue<cube> q;
 	q.push(init_state);
@@ -36,8 +38,8 @@ vector<string> solve() {
 		cube top = q.front(); q.pop();
 		cube* nextPossibleStates = top.nextPossible();
 		for (int i = 0; i < 18; i++) {
-			if (cube[i].solved()) {
-				return cube[i].steps();
+			if (nextPossibleStates[i].solved()) {
+				return nextPossibleStates[i].steps();
 			} else {
 				if (!explored[cube[i].represent()]) {  // 
 					explored[cube[i].represent] = true;
@@ -45,5 +47,12 @@ vector<string> solve() {
 				}
 			}
 		}
+	}
+}
+
+int main() {
+	vector<string> solution = solve();
+	for (int i = 0; i < solution.size(); i++) {
+		cout << solution[i];
 	}
 }
