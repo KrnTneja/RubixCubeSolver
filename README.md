@@ -6,4 +6,4 @@ While compiling the code, the size variable in the cube.h file should be set equ
 To compile:
   <code>g++ -std=c++11 solver.cpp</code>
 To run:
-  <code>./a.out &lt input file name &gt</code>
+  <code>./a.out &lt; input file name &gt;</code>
